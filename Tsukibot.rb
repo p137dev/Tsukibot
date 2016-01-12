@@ -37,7 +37,7 @@ class Tsukibot
 
 		if entries != 0
 
-			if entry < entries
+			if entry < entries and entry >= 0
 				kanji = jisho_page.css("td.kanji_column")[entry].text.strip
 				kana = jisho_page.css("td.kana_column")[entry].text.strip
 				meanings = jisho_page.css("td.meanings_column")[entry].text.split(";").join(" | ")
