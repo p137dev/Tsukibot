@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    cinch (2.3.1)
+    mini_portile2 (2.0.0)
+    moji (1.6)
+    mojinizer (0.2.2)
+      moji (~> 1.6)
+    nokogiri (1.6.7.1)
+      mini_portile2 (~> 2.0.0.rc2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  cinch
+  mojinizer
+  nokogiri
