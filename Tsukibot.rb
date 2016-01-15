@@ -17,6 +17,10 @@ class Tsukibot
 	match "jikan", method: :jikan
 	match /(bleak|uncertain|beautiful|sad|happy|angry|excited|love) emoji/, method: :emoji, use_prefix: false
 	match /ground control/, method: :bowie, use_prefix: false
+	match /¥(\d+)/, method: :jpy, use_prefix: false
+	match /(\d+) JPY/, method: :jpy, use_prefix: false
+	match /(\d+) yen/, method: :jpy, use_prefix: false
+
 
 	def help(m)
 		#I should probably make better formatting here.
@@ -55,7 +59,7 @@ class Tsukibot
 
 	def jp_to_en(m, word)
 
-		raw_page = open("http://classic.jisho.org/words?jap=#{word}&eng=&dict=edict&common=on&romaji=on")
+		raw_page = open("http://classic.jisho.org/words?jap=#{word.romaji}&eng=&dict=edict&common=on")
 		jisho_page = Nokogiri.HTML(raw_page.read)
 		entries = jisho_page.css("div.pagination").text.strip
 		entries = /\d/.match(entries)[0].to_i
@@ -64,10 +68,11 @@ class Tsukibot
 			m.reply("Sorry, no dice. Try different spelling?", "#{m.user.nick}: ")
 		else
 			kanji = jisho_page.css("td.kanji_column")[0].text.strip
-			romaji = jisho_page.css("td.kana_column")[0].text.strip
+			kanji = "-" if kanji.empty?
+			kana = jisho_page.css("td.kana_column")[0].text.strip
 			meanings = jisho_page.css("td.meanings_column")[0].text.split(";").join(" | ")
 
-			m.reply("| #{kanji} | #{romaji} | #{meanings} |", "#{m.user.nick}: ")
+			m.reply("| #{kanji} | #{kana} | #{kana.romaji} | #{meanings} |", "#{m.user.nick}: ")
 		end
 
 	end
@@ -121,6 +126,11 @@ class Tsukibot
 								"and i'm floating around my tin can"
 
 						].sample
+	end
+
+	def jpy(m, amount)
+		currency_page = Nokogiri.HTML(open("http://www.google.com/finance/converter?a=#{amount.to_i}&from=JPY&to=USD"))
+		m.reply "(that's #{currency_page.css("span.bld").text})"
 	end
 
 end

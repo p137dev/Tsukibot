@@ -41,6 +41,10 @@ Returns the word in full-width Unicode. Works without a prefix.
 
 Fetches an emoji from an external website and sends it to the channel.
 
+- `¥<number>` or `<number> yen` or `<number> JPY`
+
+Converts JPY to USD using Google Finance. Works without a prefix.
+
 ## Requirements
 - Ruby (confirmed to work on Ruby 1.9.3)
 - Cinch
