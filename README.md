@@ -50,6 +50,7 @@ Converts JPY to USD using Google Finance. Works without a prefix.
 - Cinch
 - Nokogiri
 - Mojinizer
+- Addressable
 - Bundler (if you don't want to install dependencies manually)
 
 ## Installation
@@ -57,7 +58,7 @@ Converts JPY to USD using Google Finance. Works without a prefix.
 
 2. Run `bundle install` to install dependencies. If you don't have Bundler installed, you can either `gem install bundler` or `gem install` dependencies manually.
 
-3. Edit appropiate values in the _bot.rb_ file.
+3. Edit appropiate values in the `bot.rb` file.
 
 4. Run the bot with `ruby bot.rb`.
 
