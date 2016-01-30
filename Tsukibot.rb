@@ -10,8 +10,6 @@ class Tsukibot
 	match "help", method: :help
 	match /en_to_jp (.+) (\d?)/, method: :en_to_jp_lookup
 	match /(.+) in Japanese, (\d?)/, method: :en_to_jp_lookup, use_prefix: false
-	match /en_to_jp (.+)/, method: :en_to_jp_enumerate
-	match /(.+) in Japanese/, method: :en_to_jp_enumerate, use_prefix: false
 	match /jp_to_en (.+)/, method: :jp_to_en
 	match /(.+) from Japanese/, method: :jp_to_en, use_prefix: false
 	match /hiraganize (.+)/, method: :hiraganize
@@ -26,18 +24,8 @@ class Tsukibot
 
 
 	def help(m)
-		#I should probably make better formatting here.
-		m.reply('AVAILABLE COMMANDS: en_to_jp <word> <dict_entry>, "<word> in Japanese, <entry>", jp_to_en <word>, "<word> from Japanese", hiraganize <word>, katakanize <word>, aesthetic <word>, jikan, "<emotion> emoji". Apostrophes mark prefixless commands.', "#{m.user.nick}: ")
+		m.reply "| #{"hajimemashite!".hiragana} Tsukibot #{"desu".hiragana}! | Ruby | Japan-related tasks | source & usage: https://github.com/p137dev/Tsukibot |"
 	end
-
-	def en_to_jp_enumerate(m, word)
-		raw_page = open("http://classic.jisho.org/words?jap=&eng=#{word}&dict=edict&common=on")
-		jisho_page = Nokogiri.HTML(raw_page.read)
-		entries = jisho_page.css("div.pagination").text.strip
-		entries = /\d/.match(entries)[0].to_i
-		m.reply("Found #{entries} entries.", m.user.nick + ": ")
-	end
-
 
 	def en_to_jp_lookup(m, word, entry)
 
@@ -100,7 +88,7 @@ class Tsukibot
 		else
 				m.reply "Input contains both kanji and kana. You have to translate kanji and kana separately."
 		end
-		
+
 	end
 
 	def hiraganize(m, word)
