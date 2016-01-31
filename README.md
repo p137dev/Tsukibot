@@ -9,7 +9,7 @@ __The default prefix for the commands is ":".__
 
 - `en_to_jp <word> <entry>` or `<word> in Japanese, <entry>`
 
-Translates a word in English to Japanese, giving you its kanji, hiragaka/katakana, romaji and definition. The second method works without a prefix.
+Translates a word in English to Japanese, giving you its kanji, hiragana/katakana, romaji and definition. The second method works without a prefix.
 
 
 - `jp_to_en <word> <entry>` or `<word> from Japanese`
@@ -40,6 +40,7 @@ Returns the word in full-width Unicode. Works without a prefix.
 - `<emotion> emoji`
 
 Fetches an emoji from an external website and sends it to the channel.
+__Currently not available, due to that website being dead.__
 
 - `¥<number>` or `<number> yen` or `<number> JPY`
 
