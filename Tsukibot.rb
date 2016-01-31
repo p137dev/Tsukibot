@@ -16,7 +16,7 @@ class Tsukibot
 	match /katakanize (.+)/, method: :katakanize
 	match /aesthetic (.+)/, method: :aesthetic, use_prefix: false
 	match "jikan", method: :jikan
-	match /(nervous|sad|poor|happy|angry|excited|love) emoji/, method: :emoji, use_prefix: false
+	# match /(nervous|sad|poor|happy|angry|excited|love) emoji/, method: :emoji, use_prefix: false
 	match /ground control/, method: :bowie, use_prefix: false
 	match /¥(\d+)/, method: :jpy, use_prefix: false
 	match /(\d+) JPY/, method: :jpy, use_prefix: false
